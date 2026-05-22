@@ -1,0 +1,20 @@
+CUDA_VISIBLE_DEVICES=0 python train_clm.py \
+--model_name_or_path./quantize_and_save/model_zoo/qsa2/Llama-2-7b-hf-2bit-64rank \
+--adapter_name_or_path /quantize_and_save/model_zoo/qsa2/Llama-2-7b-hf-2bit-64rank/qsa2_init \
+--output_dir exp_results/qsa2/wikitext-2/seed0nf2r64lr6e-5 \
+--learning_rate 6e-5 \
+--seed 0 \
+--dataset_name wikitext-2-raw-v1 \
+--num_train_epochs 2 \
+--per_device_train_batch_size 8 \
+--per_device_eval_batch_size 8 \
+--gradient_accumulation_steps 2 \
+--save_strategy "epoch" \
+--warmup_ratio 0.03 \
+--lr_scheduler_type "cosine" \
+--logging_steps 1 \
+--do_train --do_eval \
+--logging_steps 50 \
+--report_to tensorboard \
+--block_size 1024 \
+--weight_decay 0.1
